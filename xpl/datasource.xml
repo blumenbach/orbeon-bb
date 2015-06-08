@@ -1,0 +1,6 @@
+<datasource>
+    <driver-class-name>org.exist.xmldb.DatabaseImpl</driver-class-name>
+    <uri>xmldb:exist://localhost:8081/xmlrpc</uri>
+    <username>admin</username>
+    <password>khatru</password>
+</datasource>
