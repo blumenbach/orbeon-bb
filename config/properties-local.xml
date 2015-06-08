@@ -1,0 +1,30 @@
+<!--
+    This file is an empty template for your own properties-local.xml file. Please follow the instructions here:
+
+    http://wiki.orbeon.com/forms/doc/developer-guide/configuration-properties
+-->
+<properties xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            xmlns:oxf="http://www.orbeon.com/oxf/processors">
+<property as="xs:NMTOKENS" name="oxf.xforms.logging.debug"
+    value="document model submission control event action analysis server server-body html
+           submission-details submission-body"/>
+<property
+    as="xs:anyURI"
+ name="oxf.fr.persistence.exist.exist-uri"
+ value="http://orbeon:orbeon@localhost:8081/rest/db/orbeon/fr"/>
+
+<property
+    as="xs:boolean"
+    name="oxf.fr.detail.new.service.enable.*.*"
+    value="false"/>
+
+<property
+    as="xs:string"
+    name="oxf.fr.detail.new.service.uri.*.*"
+    value="/apps/blumenbach/tei"/>
+
+<property
+    as="xs:string"
+    name="oxf.fr.detail.new.service.passing-request-parameters.*.*"
+    value="col id"/>
+</properties>
