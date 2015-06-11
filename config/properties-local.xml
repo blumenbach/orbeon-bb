@@ -27,4 +27,35 @@
     as="xs:string"
     name="oxf.fr.detail.new.service.passing-request-parameters.*.*"
     value="col id"/>
+
+<property
+    as="xs:anyURI"
+    name="oxf.fr.default-logo.uri.*.*"
+    value="/apps/blumenbach/resources/images/blumenbach.png"/>
+
+<property
+    as="xs:string"
+    name="oxf.fr.css.custom.uri.*.*"
+    value="/apps/blumenbach/resources/css/style.css"/>
+
+<property 
+    as="xs:string" 
+    name="oxf.fr.detail.buttons.*.*"
+    value='refresh summary save-final wizard-prev wizard-next review exit'/>
+
+<property 
+    as="xs:string"
+    name="oxf.fr.summary.buttons.*.*"
+    value="home review pdf delete duplicate new exit"/>
+
+<property 
+    as="xs:string"  
+    name="oxf.fr.detail.process.exit.*.*"
+    value='navigate("http://localhost:8081/apps/blumenbach/index.html")'/>
+
+<property
+  as="xs:string"
+  name="oxf.fr.resource.*.*.en.buttons.exit"
+  value="TEI DB"/>
+
 </properties>

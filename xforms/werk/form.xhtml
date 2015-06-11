@@ -1,0 +1,545 @@
+<xh:html xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xxi="http://orbeon.org/oxf/xml/xinclude" xmlns:saxon="http://saxon.sf.net/" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xf="http://www.w3.org/2002/xforms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sql="http://orbeon.org/oxf/xml/sql" xmlns:xh="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:exf="http://www.exforms.org/exf/1-0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fb="http://orbeon.org/oxf/xml/form-builder" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <xh:head>
+        <xh:title>Werk</xh:title>
+        <xf:model id="fr-form-model" xxf:expose-xpath-types="true">
+			<xf:instance id="config" xxf:exclude-result-prefixes="#all">
+				<xi:include href="../../config.xml"></xi:include>
+			</xf:instance>
+            <!-- Main instance -->
+            <xf:instance id="fr-form-instance" xxf:exclude-result-prefixes="#all">
+                <form>
+                    <profileDesc-textClass>
+                        <classCode-scheme.BiblNr/>
+                        <classCode-n/>
+                        <categories>
+                            <categories-iteration>
+                                <taxon-lookup itemset-empty="true"/>
+                            </categories-iteration>
+                        </categories>
+                    </profileDesc-textClass>
+                    <titleStmt>
+                        <control-8/>
+                    </titleStmt>
+                    <sourceDesc-monograph>
+                        <title-type.main/>
+                        <title-type.aut/>
+                        <title-type.sub-grid>
+                            <title-type.sub-grid-iteration>
+                                <title-type.sub/>
+                            </title-type.sub-grid-iteration>
+                        </title-type.sub-grid>
+                        <control-22/>
+                        <control-23/>
+                    </sourceDesc-monograph>
+                    <sourceDesc-analytic>
+                        <control-19/>
+                        <control-20/>
+                        <control-21/>
+                    </sourceDesc-analytic>
+                    <sourceDesc-imprint>
+                        <imprint-pubPlace/>
+                        <imprint-publisher-name/>
+                        <imprint-date-when/>
+                        <imprint-date/>
+                    </sourceDesc-imprint>
+                    <msDesc>
+                        <msidentifier-repository/>
+                        <msidentifier-idno/>
+                        <msidentifier-idno-n/>
+                        <extent/>
+                        <dimensions-dim/>
+                        <source-certainty-desc/>
+                    </msDesc>
+                    <stdf-annotations>
+                        <so-annotations>
+                            <so-annotations-iteration>
+                                <spanGrp/>
+                            </so-annotations-iteration>
+                        </so-annotations>
+                    </stdf-annotations>
+                </form>
+            </xf:instance>
+
+            <!-- Bindings -->
+            <xf:bind id="fr-form-binds" ref="instance('fr-form-instance')">
+                <xf:bind id="profileDesc-textClass-bind" name="profileDesc-textClass" ref="profileDesc-textClass">
+                    <xf:bind id="classCode-scheme.BiblNr-bind" ref="classCode-scheme.BiblNr" name="classCode-scheme.BiblNr"/>
+                    <xf:bind id="classCode-n-bind" ref="classCode-n" name="classCode-n"/>
+                    <xf:bind id="categories-bind" ref="categories" name="categories">
+                        <xf:bind id="categories-iteration-bind" ref="categories-iteration" name="categories-iteration">
+                            <xf:bind id="taxon-lookup-bind" ref="taxon-lookup" name="taxon-lookup"/>
+                        </xf:bind>
+                    </xf:bind>
+                </xf:bind>
+                <xf:bind id="titleStmt-bind" ref="titleStmt" name="titleStmt">
+                    <xf:bind id="control-8-bind" ref="control-8" name="control-8"/>
+                </xf:bind>
+                <xf:bind id="sourceDesc-monograph-bind" ref="sourceDesc-monograph" name="sourceDesc-monograph">
+                    <xf:bind id="title-type.main-bind" ref="title-type.main" name="title-type.main"/>
+                    <xf:bind id="title-type.sub-grid-bind" ref="title-type.sub-grid" name="title-type.sub-grid">
+                        <xf:bind id="title-type.sub-grid-iteration-bind" ref="title-type.sub-grid-iteration" name="title-type.sub-grid-iteration">
+                            <xf:bind id="title-type.sub-bind" ref="title-type.sub" name="title-type.sub"/>
+                        </xf:bind>
+                    </xf:bind>
+                    <xf:bind id="title-type.aut-bind" ref="title-type.aut" name="title-type.aut"/>
+                    <xf:bind id="control-22-bind" ref="control-22" name="control-22"/>
+                    <xf:bind id="control-23-bind" ref="control-23" name="control-23"/>
+                </xf:bind>
+                <xf:bind id="sourceDesc-imprint-bind" ref="sourceDesc-imprint" name="sourceDesc-imprint">
+                    <xf:bind id="imprint-pubPlace-bind" ref="imprint-pubPlace" name="imprint-pubPlace"/>
+                    <xf:bind id="imprint-publisher-name-bind" ref="imprint-publisher-name" name="imprint-publisher-name"/>
+                    <xf:bind id="imprint-date-when-bind" ref="imprint-date-when" name="imprint-date-when" type="xf:date"/>
+                    <xf:bind id="imprint-date-bind" ref="imprint-date" name="imprint-date"/>
+                </xf:bind>
+                <xf:bind id="sourceDesc-analytic-bind" ref="sourceDesc-analytic" name="sourceDesc-analytic">
+                    <xf:bind id="control-19-bind" ref="control-19" name="control-19"/>
+                    <xf:bind id="control-20-bind" ref="control-20" name="control-20"/>
+                    <xf:bind id="control-21-bind" ref="control-21" name="control-21"/>
+                </xf:bind>
+                <xf:bind id="msDesc-bind" ref="msDesc" name="msDesc">
+                    <xf:bind id="msidentifier-repository-bind" ref="msidentifier-repository" name="msidentifier-repository"/>
+                    <xf:bind id="msidentifier-idno-bind" ref="msidentifier-idno" name="msidentifier-idno"/>
+                    <xf:bind id="msidentifier-idno-n-bind" ref="msidentifier-idno-n" name="msidentifier-idno-n"/>
+                    <xf:bind id="extent-bind" ref="extent" name="extent"/>
+                    <xf:bind id="dimensions-dim-bind" ref="dimensions-dim" name="dimensions-dim"/>
+                    <xf:bind id="source-certainty-desc-bind" ref="source-certainty-desc" name="source-certainty-desc" type="xf:boolean"/>
+                </xf:bind>
+                <xf:bind id="stdf-annotations-bind" ref="stdf-annotations" name="stdf-annotations">
+                    <xf:bind id="so-annotations-bind" ref="so-annotations" name="so-annotations">
+                        <xf:bind id="so-annotations-iteration-bind" ref="so-annotations-iteration" name="so-annotations-iteration">
+                            <xf:bind id="spanGrp-bind" ref="spanGrp" name="spanGrp"/>
+                        </xf:bind>
+                    </xf:bind>
+                </xf:bind>
+            </xf:bind>
+
+            <!-- Metadata -->
+            <xf:instance xxf:readonly="true" id="fr-form-metadata" xxf:exclude-result-prefixes="#all">
+                <metadata>
+                    <application-name>blumenbach</application-name>
+                    <form-name>werk</form-name>
+                    <title xml:lang="en">Werk</title>
+                    <description xml:lang="en">Create Werk</description>
+                    <singleton>false</singleton>
+                    <migration version="4.8.0">[{ "path": "profileDesc-textClass/categories", "iteration-name": "categories-iteration" },{ "path": "sourceDesc-monograph/title-type.sub-grid", "iteration-name": "title-type.sub-grid-iteration" },{ "path": "stdf-annotations/so-annotations", "iteration-name": "so-annotations-iteration" }]</migration>
+                </metadata>
+            </xf:instance>
+
+            <!-- Attachments -->
+            <xf:instance id="fr-form-attachments" xxf:exclude-result-prefixes="#all">
+                <attachments>
+                    <css mediatype="text/css" filename="" size=""/>
+                    <pdf mediatype="application/pdf" filename="" size=""/>
+                </attachments>
+            </xf:instance>
+
+            <!-- All form resources -->
+            <!-- Don't make readonly by default in case a service modifies the resources -->
+            <xf:instance id="fr-form-resources" xxf:readonly="false" xxf:exclude-result-prefixes="#all">
+                <resources>
+                    <resource xml:lang="en">
+                        <taxon-lookup>
+                            <label>Taxon Assignments</label>
+                            <hint>Select from existing taxons or go to &lt;a href="../taxon/new"&gt;New Taxon&lt;/a&gt; to create one.</hint>
+                        </taxon-lookup>
+                        <spanGrp>
+                            <label>Anmerkung Statements</label>
+                            <hint/>
+                        </spanGrp>
+                        <msidentifier-repository>
+                            <label>Repository</label>
+                            <hint>e.g. "SUB Göttingen"</hint>
+                        </msidentifier-repository>
+                        <msidentifier-idno>
+                            <label>ID # (label)</label>
+                            <hint>ID used for humans (e.g. 8 EPH LIT 160/7)</hint>
+                        </msidentifier-idno>
+                        <msidentifier-idno-n>
+                            <label>ID # (data)</label>
+                            <hint>ID used for API (e.g. "8 EPH LIT 1607")</hint>
+                        </msidentifier-idno-n>
+                        <extent>
+                            <label>Extent</label>
+                            <hint>e.g. "[1] Bl., 100 S., [1], [2] Bl. : 2 Ill. (Kupferst.)"</hint>
+                        </extent>
+                        <dimensions-dim>
+                            <label>Dimensions</label>
+                            <hint>e.g. "22 cm (8°)"</hint>
+                        </dimensions-dim>
+                        <source-certainty-desc>
+                            <label>Autopsy</label>
+                            <hint/>
+                        </source-certainty-desc>
+                        <imprint-pubPlace>
+                            <label>PubPlace</label>
+                            <hint/>
+                        </imprint-pubPlace>
+                        <imprint-publisher-name>
+                            <label>Publisher</label>
+                            <hint/>
+                        </imprint-publisher-name>
+                        <imprint-date-when>
+                            <label>Publication Date</label>
+                            <hint/>
+                        </imprint-date-when>
+                        <imprint-date>
+                            <label>Publication Date Label</label>
+                            <hint>e.g. "1795, 21. November"</hint>
+                        </imprint-date>
+                        <control-22>
+                            <label>Edition</label>
+                            <hint/>
+                        </control-22>
+                        <control-23>
+                            <label>Series</label>
+                            <hint/>
+                        </control-23>
+                        <control-19>
+                            <label>TItle (Analytic)</label>
+                            <hint>e.g. "Überschrift: London"</hint>
+                        </control-19>
+                        <control-20>
+                            <label>BiblScope</label>
+                            <hint>e.g.. "1795 (187. Stück, 21. November)"</hint>
+                        </control-20>
+                        <control-21>
+                            <label>CitedRange</label>
+                            <hint>e.g. "S. 1865-1877"</hint>
+                        </control-21>
+                        <title-type.sub>
+                            <label>Title (Sub)</label>
+                            <hint/>
+                        </title-type.sub>
+                        <control-8>
+                            <label>Title (Meta)</label>
+                            <hint>A short title that shows in search results</hint>
+                        </control-8>
+                        <title-type.main>
+                            <label>TItle (Main)</label>
+                            <hint/>
+                        </title-type.main>
+                        <title-type.aut>
+                            <label>Title (Author)</label>
+                            <hint>If Author is listed first in Title, put the author in this field</hint>
+                        </title-type.aut>
+                        <classCode-scheme.BiblNr>
+                            <label>BiblNr</label>
+                            <hint/>
+                        </classCode-scheme.BiblNr>
+                        <classCode-n>
+                            <label>BiblNr Index</label>
+                            <hint/>
+                        </classCode-n>
+                        <profileDesc-textClass>
+                            <label>TextClass</label>
+                        </profileDesc-textClass>
+                        <titleStmt>
+                            <label>TitleStatement</label>
+                            <help/>
+                        </titleStmt>
+                        <sourceDesc-monograph>
+                            <label>SourceDescription-Monograph</label>
+                            <help/>
+                        </sourceDesc-monograph>
+                        <sourceDesc-analytic>
+                            <label>SourceDescription-Analytic</label>
+                            <help/>
+                        </sourceDesc-analytic>
+                        <sourceDesc-imprint>
+                            <label>Imprint</label>
+                            <help/>
+                        </sourceDesc-imprint>
+                        <msDesc>
+                            <label>MsDescription</label>
+                            <help/>
+                        </msDesc>
+                        <stdf-annotations>
+                            <label>Annotations</label>
+                            <help/>
+                        </stdf-annotations>
+                    </resource>
+                </resources>
+            </xf:instance>
+
+            <!-- Utility instances for services -->
+            <xf:instance id="fr-service-request-instance" xxf:exclude-result-prefixes="#all">
+                <request/>
+            </xf:instance>
+            <xf:instance id="fr-service-response-instance" xxf:exclude-result-prefixes="#all">
+                <response/>
+            </xf:instance>
+            <xf:instance xxf:readonly="true" id="title-type.sub-grid-template">
+                <title-type.sub-grid-iteration>
+                    <title-type.sub/>
+                </title-type.sub-grid-iteration>
+            </xf:instance>
+            <xf:instance xxf:readonly="true" id="categories-template">
+                <categories-iteration>
+                    <taxon-lookup/>
+                </categories-iteration>
+            </xf:instance>
+            <xf:instance xxf:readonly="true" id="so-annotations-template">
+                <so-annotations-iteration>
+                    <spanGrp/>
+                </so-annotations-iteration>
+            </xf:instance>
+        </xf:model>
+    </xh:head>
+    <xh:body>
+        <fr:view>
+            <fr:body xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
+                <fr:section id="profileDesc-textClass-control" bind="profileDesc-textClass-bind">
+                    <xf:label ref="$form-resources/profileDesc-textClass/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="classCode-scheme.BiblNr-control" bind="classCode-scheme.BiblNr-bind" class="fr-summary fr-search">
+                                    <xf:label ref="$form-resources/classCode-scheme.BiblNr/label"/>
+                                    <xf:hint ref="$form-resources/classCode-scheme.BiblNr/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td>
+                                <xf:input id="classCode-n-control" bind="classCode-n-bind">
+                                    <xf:label ref="$form-resources/classCode-n/label"/>
+                                    <xf:hint ref="$form-resources/classCode-n/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                    <fr:grid id="categories-control" bind="categories-bind" repeat="content" min="1" template="instance('categories-template')">
+                        <xh:tr>
+                            <xh:td>
+                                <fr:databound-select1 xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" id="taxon-lookup-control" appearance="minimal" resource="{instance('config')/exist/url}/taxons/categories.xml" bind="taxon-lookup-bind">
+                                    <xf:label ref="$form-resources/taxon-lookup/label"/>
+                                    <xf:hint ref="$form-resources/taxon-lookup/hint" mediatype="text/html"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                    <xf:itemset ref="tei:classCode">
+                                        <xf:label ref="tei:rs"/>
+                                        <xf:value ref="tei:idno"/>
+                                    </xf:itemset>
+                                </fr:databound-select1>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="titleStmt-control" bind="titleStmt-bind">
+                    <xf:label ref="$form-resources/titleStmt/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="control-8-control" bind="control-8-bind">
+                                    <xf:label ref="$form-resources/control-8/label"/>
+                                    <xf:hint ref="$form-resources/control-8/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="sourceDesc-monograph-control" bind="sourceDesc-monograph-bind">
+                    <xf:label ref="$form-resources/sourceDesc-monograph/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="title-type.main-control" bind="title-type.main-bind" class="fr-summary fr-search">
+                                    <xf:label ref="$form-resources/title-type.main/label"/>
+                                    <xf:hint ref="$form-resources/title-type.main/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="title-type.aut-control" bind="title-type.aut-bind">
+                                    <xf:label ref="$form-resources/title-type.aut/label"/>
+                                    <xf:hint ref="$form-resources/title-type.aut/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                    <fr:grid id="title-type.sub-grid-control" bind="title-type.sub-grid-bind" repeat="content" min="1" template="instance('title-type.sub-grid-template')">
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="title-type.sub-control" bind="title-type.sub-bind">
+                                    <xf:label ref="$form-resources/title-type.sub/label"/>
+                                    <xf:hint ref="$form-resources/title-type.sub/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="control-22-control" bind="control-22-bind">
+                                    <xf:label ref="$form-resources/control-22/label"/>
+                                    <xf:hint ref="$form-resources/control-22/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="control-23-control" bind="control-23-bind">
+                                    <xf:label ref="$form-resources/control-23/label"/>
+                                    <xf:hint ref="$form-resources/control-23/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="sourceDesc-analytic-control" bind="sourceDesc-analytic-bind">
+                    <xf:label ref="$form-resources/sourceDesc-analytic/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="control-19-control" bind="control-19-bind">
+                                    <xf:label ref="$form-resources/control-19/label"/>
+                                    <xf:hint ref="$form-resources/control-19/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="control-20-control" bind="control-20-bind">
+                                    <xf:label ref="$form-resources/control-20/label"/>
+                                    <xf:hint ref="$form-resources/control-20/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="control-21-control" bind="control-21-bind">
+                                    <xf:label ref="$form-resources/control-21/label"/>
+                                    <xf:hint ref="$form-resources/control-21/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="sourceDesc-imprint-control" bind="sourceDesc-imprint-bind">
+                    <xf:label ref="$form-resources/sourceDesc-imprint/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="imprint-pubPlace-control" bind="imprint-pubPlace-bind">
+                                    <xf:label ref="$form-resources/imprint-pubPlace/label"/>
+                                    <xf:hint ref="$form-resources/imprint-pubPlace/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="imprint-publisher-name-control" bind="imprint-publisher-name-bind">
+                                    <xf:label ref="$form-resources/imprint-publisher-name/label"/>
+                                    <xf:hint ref="$form-resources/imprint-publisher-name/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <fr:fields-date xmlns="http://orbeon.org/oxf/xml/form-builder" xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" id="imprint-date-when-control" bind="imprint-date-when-bind">
+                                    <xf:label ref="$form-resources/imprint-date-when/label"/>
+                                    <xf:hint ref="$form-resources/imprint-date-when/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </fr:fields-date>
+                            </xh:td>
+                            <xh:td>
+                                <xf:input id="imprint-date-control" bind="imprint-date-bind">
+                                    <xf:label ref="$form-resources/imprint-date/label"/>
+                                    <xf:hint ref="$form-resources/imprint-date/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="msDesc-control" bind="msDesc-bind">
+                    <xf:label ref="$form-resources/msDesc/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="msidentifier-repository-control" bind="msidentifier-repository-bind">
+                                    <xf:label ref="$form-resources/msidentifier-repository/label"/>
+                                    <xf:hint ref="$form-resources/msidentifier-repository/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="msidentifier-idno-control" bind="msidentifier-idno-bind">
+                                    <xf:label ref="$form-resources/msidentifier-idno/label"/>
+                                    <xf:hint ref="$form-resources/msidentifier-idno/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td>
+                                <xf:input id="msidentifier-idno-n-control" bind="msidentifier-idno-n-bind">
+                                    <xf:label ref="$form-resources/msidentifier-idno-n/label"/>
+                                    <xf:hint ref="$form-resources/msidentifier-idno-n/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="extent-control" bind="extent-bind">
+                                    <xf:label ref="$form-resources/extent/label"/>
+                                    <xf:hint ref="$form-resources/extent/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td>
+                                <xf:input id="dimensions-dim-control" bind="dimensions-dim-bind">
+                                    <xf:label ref="$form-resources/dimensions-dim/label"/>
+                                    <xf:hint ref="$form-resources/dimensions-dim/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="source-certainty-desc-control" bind="source-certainty-desc-bind">
+                                    <xf:label ref="$form-resources/source-certainty-desc/label"/>
+                                    <xf:hint ref="$form-resources/source-certainty-desc/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td/>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="stdf-annotations-control" bind="stdf-annotations-bind">
+                    <xf:label ref="$form-resources/stdf-annotations/label"/>
+                    <fr:grid id="so-annotations-control" bind="so-annotations-bind" repeat="content" min="1" template="instance('so-annotations-template')">
+                        <xh:tr>
+                            <xh:td>
+                                <xf:textarea id="spanGrp-control" bind="spanGrp-bind">
+                                    <xf:label ref="$form-resources/spanGrp/label"/>
+                                    <xf:hint ref="$form-resources/spanGrp/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:textarea>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+            </fr:body>
+        </fr:view>
+    </xh:body>
+</xh:html>

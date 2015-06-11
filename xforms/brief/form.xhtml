@@ -1,0 +1,634 @@
+<xh:html xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:xxi="http://orbeon.org/oxf/xml/xinclude" xmlns:saxon="http://saxon.sf.net/" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xf="http://www.w3.org/2002/xforms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sql="http://orbeon.org/oxf/xml/sql" xmlns:xh="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:exf="http://www.exforms.org/exf/1-0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fb="http://orbeon.org/oxf/xml/form-builder" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <xh:head>
+        <xh:title>Brief</xh:title>
+        <xf:model id="fr-form-model" xxf:expose-xpath-types="true">
+
+            <!-- Main instance -->
+            <xf:instance id="fr-form-instance" xxf:exclude-result-prefixes="#all">
+                <form>
+                    <textClass>
+                        <classCode-scheme.RegNr-idno/>
+                        <classCode-n/>
+                    </textClass>
+                    <titleStmt>
+                        <title-type.meta/>
+                    </titleStmt>
+                    <sourceDesc>
+                        <title-type.source/>
+                        <author-forename/>
+                        <author-surname/>
+                    </sourceDesc>
+                    <notesStmt>
+                        <note-type.Überlieferung/>
+                        <note-type.Drucke/>
+                        <note-type.Edition/>
+                        <note-type.Werke/>
+                        <note-type.Objekte-rs/>
+                        <note-type.Anmerkung-note/>
+                    </notesStmt>
+                    <profileDesc>
+                        <creation-persName-forename/>
+                        <creation-persName-surname/>
+                        <event-type.origin-when/>
+                        <event-type.origin-note-type.abfassungsdatum-date/>
+                        <event-type.julian-origin-when/>
+                        <event-type.julian-origin-note-type.abfassungsdatum-date/>
+                        <placeName-type.Abfassungsort/>
+                    </profileDesc>
+                    <notesStmt_refs>
+                        <grid-26>
+                            <grid-26-iteration>
+                                <note-type.ref/>
+                                <ref-type>pdf</ref-type>
+                                <note-type.ref-rs/>
+                            </grid-26-iteration>
+                        </grid-26>
+                    </notesStmt_refs>
+                </form>
+            </xf:instance>
+
+            <!-- Bindings -->
+            <xf:bind id="fr-form-binds" ref="instance('fr-form-instance')">
+                <xf:bind id="textClass-bind" name="textClass" ref="textClass">
+                    <xf:bind id="classCode-scheme.RegNr-idno-bind" name="classCode-scheme.RegNr-idno" ref="classCode-scheme.RegNr-idno"/>
+                    <xf:bind id="classCode-n-bind" ref="classCode-n" name="classCode-n"/>
+                </xf:bind>
+                <xf:bind id="titleStmt-bind" ref="titleStmt" name="titleStmt">
+                    <xf:bind id="title-type.meta-bind" ref="title-type.meta" name="title-type.meta"/>
+                </xf:bind>
+                <xf:bind id="sourceDesc-bind" ref="sourceDesc" name="sourceDesc">
+                    <xf:bind id="title-type.source-bind" ref="title-type.source" name="title-type.source"/>
+                    <xf:bind id="author-forename-bind" ref="author-forename" name="author-forename"/>
+                    <xf:bind id="author-surname-bind" ref="author-surname" name="author-surname"/>
+                </xf:bind>
+                <xf:bind id="notesStmt-bind" ref="notesStmt" name="notesStmt">
+                    <xf:bind id="note-type.Überlieferung-bind" ref="note-type.Überlieferung" name="note-type.Überlieferung"/>
+                    <xf:bind id="note-type.Drucke-bind" ref="note-type.Drucke" name="note-type.Drucke"/>
+                    <xf:bind id="note-type.Edition-bind" ref="note-type.Edition" name="note-type.Edition"/>
+                    <xf:bind id="note-type.Werke-bind" ref="note-type.Werke//*" name="note-type.Werke"/>
+                    <xf:bind id="note-type.Objekte-rs-bind" ref="note-type.Objekte-rs" name="note-type.Objekte-rs"/>
+                    <xf:bind id="note-type.Anmerkung-note-bind" ref="note-type.Anmerkung-note" name="note-type.Anmerkung-note"/>
+                </xf:bind>
+                <xf:bind id="profileDesc-bind" ref="profileDesc" name="profileDesc">
+                    <xf:bind id="placeName-type.Abfassungsort-bind" ref="placeName-type.Abfassungsort" name="placeName-type.Abfassungsort"/>
+                    <xf:bind id="event-type.origin-when-bind" ref="event-type.origin-when" name="event-type.origin-when" type="xf:date"/>
+                    <xf:bind id="event-type.origin-note-type.abfassungsdatum-date-bind" ref="event-type.origin-note-type.abfassungsdatum-date" name="event-type.origin-note-type.abfassungsdatum-date"/>
+                    <xf:bind id="event-type.julian-origin-when-bind" ref="event-type.julian-origin-when" name="event-type.julian-origin-when" type="xf:date"/>
+                    <xf:bind id="event-type.julian-origin-note-type.abfassungsdatum-date-bind" ref="event-type.julian-origin-note-type.abfassungsdatum-date" name="event-type.julian-origin-note-type.abfassungsdatum-date"/>
+                    <xf:bind id="creation-persName-forename-bind" ref="creation-persName-forename" name="creation-persName-forename"/>
+                    <xf:bind id="creation-persName-surname-bind" ref="creation-persName-surname" name="creation-persName-surname"/>
+                </xf:bind>
+                <xf:bind id="notesStmt_refs-bind" ref="notesStmt_refs" name="notesStmt_refs">
+                    <xf:bind id="grid-26-bind" ref="grid-26" name="grid-26">
+                        <xf:bind id="grid-26-iteration-bind" ref="grid-26-iteration" name="grid-26-iteration">
+                            <xf:bind id="note-type.ref-bind" ref="note-type.ref" name="note-type.ref"/>
+                            <xf:bind id="ref-type-bind" ref="ref-type" name="ref-type"/>
+                            <xf:bind id="note-type.ref-rs-bind" ref="note-type.ref-rs" name="note-type.ref-rs"/>
+                        </xf:bind>
+                    </xf:bind>
+                </xf:bind>
+            </xf:bind>
+
+            <!-- Metadata -->
+            <xf:instance xxf:readonly="true" id="fr-form-metadata" xxf:exclude-result-prefixes="#all">
+                <metadata>
+                    <application-name>blumenbach</application-name>
+                    <form-name>brief</form-name>
+                    <title xml:lang="en">Brief</title>
+                    <description xml:lang="en">Brief Create / Edit</description>
+                    <singleton>false</singleton>
+                    <migration version="4.8.0">[{ "path": "notesStmt_refs/grid-26", "iteration-name": "grid-26-iteration" }]</migration>
+                </metadata>
+            </xf:instance>
+
+            <!-- Attachments -->
+            <xf:instance id="fr-form-attachments" xxf:exclude-result-prefixes="#all">
+                <attachments>
+                    <css mediatype="text/css" filename="" size=""/>
+                    <pdf mediatype="application/pdf" filename="" size=""/>
+                </attachments>
+            </xf:instance>
+
+            <!-- All form resources -->
+            <!-- Don't make readonly by default in case a service modifies the resources -->
+            <xf:instance id="fr-form-resources" xxf:readonly="false" xxf:exclude-result-prefixes="#all">
+                <resources>
+                    <resource xml:lang="en">
+                        <note-type.ref>
+                            <label>URL</label>
+                            <hint/>
+                        </note-type.ref>
+                        <ref-type>
+                            <label/>
+                            <hint/>
+                            <item>
+                                <label>HTML</label>
+                                <hint/>
+                                <value>html</value>
+                            </item>
+                            <item>
+                                <label>PDF</label>
+                                <hint/>
+                                <value>pdf</value>
+                            </item>
+                            <item>
+                                <label>Other</label>
+                                <hint/>
+                                <value>other</value>
+                            </item>
+                        </ref-type>
+                        <note-type.ref-rs>
+                            <label>URL Label</label>
+                            <hint/>
+                        </note-type.ref-rs>
+                        <creation-persName-forename>
+                            <label>Empfanger (forename)</label>
+                            <hint/>
+                        </creation-persName-forename>
+                        <creation-persName-surname>
+                            <label>Empfanger (surname)</label>
+                            <hint/>
+                        </creation-persName-surname>
+                        <event-type.origin-when>
+                            <label>Origin (Gregorian Date)</label>
+                            <hint/>
+                        </event-type.origin-when>
+                        <event-type.origin-note-type.abfassungsdatum-date>
+                            <label>Date (Gregorian Label)</label>
+                            <hint/>
+                        </event-type.origin-note-type.abfassungsdatum-date>
+                        <event-type.julian-origin-when>
+                            <label>Origin (Julian Date)</label>
+                            <hint/>
+                        </event-type.julian-origin-when>
+                        <event-type.julian-origin-note-type.abfassungsdatum-date>
+                            <label>Date (Julian Label)</label>
+                            <hint/>
+                        </event-type.julian-origin-note-type.abfassungsdatum-date>
+                        <placeName-type.Abfassungsort>
+                            <label>PlaceName (Abfassungsort)</label>
+                            <hint/>
+                        </placeName-type.Abfassungsort>
+                        <note-type.Überlieferung>
+                            <label>Überlieferung</label>
+                            <hint/>
+                        </note-type.Überlieferung>
+                        <note-type.Drucke>
+                            <label>Drucke</label>
+                            <hint/>
+                        </note-type.Drucke>
+                        <note-type.Edition>
+                            <label>Edition</label>
+                            <hint/>
+                        </note-type.Edition>
+                        <note-type.Werke>
+                            <label>Werke</label>
+                            <hint/>
+                        </note-type.Werke>
+                        <note-type.Objekte-rs>
+                            <label>Objekte</label>
+                            <hint/>
+                        </note-type.Objekte-rs>
+                        <note-type.Anmerkung-note>
+                            <label>Anmerkung</label>
+                            <hint/>
+                        </note-type.Anmerkung-note>
+                        <title-type.source>
+                            <label>Title (Source)</label>
+                            <hint/>
+                        </title-type.source>
+                        <author-forename>
+                            <label>Author (forename)</label>
+                            <hint/>
+                        </author-forename>
+                        <author-surname>
+                            <label>Author (surname)</label>
+                            <hint/>
+                        </author-surname>
+                        <title-type.meta>
+                            <label>Title (Meta)</label>
+                            <hint/>
+                        </title-type.meta>
+                        <textClass>
+                            <label>TextClass</label>
+                        </textClass>
+                        <titleStmt>
+                            <label>TitleStatement</label>
+                            <help/>
+                        </titleStmt>
+                        <sourceDesc>
+                            <label>SourceDescription</label>
+                            <help/>
+                        </sourceDesc>
+                        <notesStmt>
+                            <label>NotesStatement</label>
+                            <help/>
+                        </notesStmt>
+                        <profileDesc>
+                            <label>ProfileDescription</label>
+                            <help/>
+                        </profileDesc>
+                        <notesStmt_refs>
+                            <label>Referenz</label>
+                            <help/>
+                        </notesStmt_refs>
+                        <classCode-scheme.RegNr-idno>
+                            <label>RegNr</label>
+                            <hint/>
+                        </classCode-scheme.RegNr-idno>
+                        <classCode-n>
+                            <label>RegNr Index</label>
+                            <hint/>
+                        </classCode-n>
+                    </resource>
+                </resources>
+            </xf:instance>
+
+            <!-- Utility instances for services -->
+            <xf:instance id="fr-service-request-instance" xxf:exclude-result-prefixes="#all">
+                <request/>
+            </xf:instance>
+            <xf:instance id="fr-service-response-instance" xxf:exclude-result-prefixes="#all">
+                <response/>
+            </xf:instance>
+            <xf:send ev:event="xforms-model-construct-done" submission="load-data-submission"/>
+            <xf:submission id="load-data-submission" method="get" serialization="none" mediatype="application/xml" resource="http://localhost:8081/rest/db/apps/blumenbach/data/br/jfb_br_{xxf:get-request-parameter('id')}.xml" replace="instance" instance="fr-service-response-instance"/>
+            <xf:action id="populate-data-binding">
+                <xf:action ev:event="xforms-ready" ev:observer="fr-form-model" if="true()">
+                    <xf:send submission="load-data-submission"/>
+                </xf:action>
+                <xf:action ev:event="xforms-submit-done" ev:observer="load-data-submission" context="instance('fr-service-response-instance')">
+                    <xf:action>
+                        <xf:var name="control-name" value="'classCode-scheme.RegNr-idno'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:classCode[@scheme='RegNr']/tei:idno" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'classCode-n'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:classCode[@scheme='RegNr']/@n" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'creation-persName-forename'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:creation/tei:persName/tei:forename" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'creation-persName-surname'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:creation/tei:persName/tei:surname" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'event-type.origin-when'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:event[@type='origin']/@when" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'event-type.julian-origin-when'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:event[@type='julian-origin']/@when" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'event-type.origin-note-type.abfassungsdatum-date'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:event[@type='origin']/tei:note[@type='Abfassungsdatum']/tei:date" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'event-type.julian-origin-note-type.abfassungsdatum-date'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:event[@type='julian-origin']/tei:note[@type='Abfassungsdatum']/tei:date" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'placeName-type.Abfassungsort'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:placeName[@type='Abfassungsort']" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'note-type.Überlieferung'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='Überlieferung']" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'note-type.Drucke'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='Drucke']/tei:bibl" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'note-type.Edition'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='Edition']/tei:bibl/tei:edition" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'note-type.Werke'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='Werke']/tei:bibl/tei:relatedItem/tei:bibl/node()" as="xs:sequence"/>
+                        <xf:insert context="instance('fr-form-instance')/*/*[name() = $control-name]" origin="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'note-type.Objekte-rs'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='Objekte']/tei:rs" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'note-type.Anmerkung-note'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='Anmerkung']/tei:note" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'title-type.source'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:title[@type='source']" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'author-forename'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:biblFull/tei:titleStmt/tei:author/tei:persName/tei:forename" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'author-surname'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:biblFull/tei:titleStmt/tei:author/tei:persName/tei:surname" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'title-type.meta'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:title[@type='meta']" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'title-type.source'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:title[@type='source']" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'note-type.ref'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='ref'][1]/tei:ref" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'note-type.ref-rs'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='ref'][1]/tei:rs" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'ref-type'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='ref'][1]/tei:ref/@type"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*/*/*[name() = $control-name]" value="if ($control-value = 'pdf') then 'pdf' else 'html'"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'note-type.ref'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='ref'][2]/tei:ref" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'note-type.ref-rs'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='ref'][2]/tei:rs" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'ref-type'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:note[@type='ref'][2]/tei:ref/@type"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*/*/*[name() = $control-name]" value="if ($control-value = 'pdf') then 'pdf' else 'html'"/>
+                    </xf:action>
+                </xf:action>
+            </xf:action>
+            <xf:instance xxf:readonly="true" id="grid-26-template">
+                <grid-26-iteration>
+                    <note-type.ref/>
+                    <ref-type/>
+                    <note-type.ref-rs/>
+                </grid-26-iteration>
+            </xf:instance>
+        </xf:model>
+    </xh:head>
+    <xh:body>
+        <fr:view>
+            <fr:body xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
+                <fr:section id="textClass-control" bind="textClass-bind">
+                    <xf:label ref="$form-resources/textClass/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="classCode-scheme.RegNr-idno-control" bind="classCode-scheme.RegNr-idno-bind" class="fr-summary">
+                                    <xf:label ref="$form-resources/classCode-scheme.RegNr-idno/label"/>
+                                    <xf:hint ref="$form-resources/classCode-scheme.RegNr-idno/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td>
+                                <xf:input id="classCode-n-control" bind="classCode-n-bind">
+                                    <xf:label ref="$form-resources/classCode-n/label"/>
+                                    <xf:hint ref="$form-resources/classCode-n/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="titleStmt-control" bind="titleStmt-bind">
+                    <xf:label ref="$form-resources/titleStmt/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:textarea id="title-type.meta-control" bind="title-type.meta-bind">
+                                    <xf:label ref="$form-resources/title-type.meta/label"/>
+                                    <xf:hint ref="$form-resources/title-type.meta/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:textarea>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="sourceDesc-control" bind="sourceDesc-bind">
+                    <xf:label ref="$form-resources/sourceDesc/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:textarea id="title-type.source-control" bind="title-type.source-bind" class="fr-summary">
+                                    <xf:label ref="$form-resources/title-type.source/label"/>
+                                    <xf:hint ref="$form-resources/title-type.source/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:textarea>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="author-forename-control" bind="author-forename-bind">
+                                    <xf:label ref="$form-resources/author-forename/label"/>
+                                    <xf:hint ref="$form-resources/author-forename/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td>
+                                <xf:input id="author-surname-control" bind="author-surname-bind">
+                                    <xf:label ref="$form-resources/author-surname/label"/>
+                                    <xf:hint ref="$form-resources/author-surname/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="notesStmt-control" bind="notesStmt-bind">
+                    <xf:label ref="$form-resources/notesStmt/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:textarea id="note-type.Überlieferung-control" bind="note-type.Überlieferung-bind">
+                                    <xf:label ref="$form-resources/note-type.Überlieferung/label"/>
+                                    <xf:hint ref="$form-resources/note-type.Überlieferung/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:textarea>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:textarea id="note-type.Drucke-control" bind="note-type.Drucke-bind">
+                                    <xf:label ref="$form-resources/note-type.Drucke/label"/>
+                                    <xf:hint ref="$form-resources/note-type.Drucke/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:textarea>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:textarea id="note-type.Edition-control" bind="note-type.Edition-bind">
+                                    <xf:label ref="$form-resources/note-type.Edition/label"/>
+                                    <xf:hint ref="$form-resources/note-type.Edition/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:textarea>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:textarea id="note-type.Werke-control" bind="note-type.Werke-bind">
+                                    <xf:label ref="$form-resources/note-type.Werke/label"/>
+                                    <xf:hint ref="$form-resources/note-type.Werke/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:textarea>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:textarea id="note-type.Objekte-rs-control" bind="note-type.Objekte-rs-bind">
+                                    <xf:label ref="$form-resources/note-type.Objekte-rs/label"/>
+                                    <xf:hint ref="$form-resources/note-type.Objekte-rs/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:textarea>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:textarea id="note-type.Anmerkung-note-control" bind="note-type.Anmerkung-note-bind">
+                                    <xf:label ref="$form-resources/note-type.Anmerkung-note/label"/>
+                                    <xf:hint ref="$form-resources/note-type.Anmerkung-note/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:textarea>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="profileDesc-control" bind="profileDesc-bind">
+                    <xf:label ref="$form-resources/profileDesc/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="creation-persName-forename-control" bind="creation-persName-forename-bind">
+                                    <xf:label ref="$form-resources/creation-persName-forename/label"/>
+                                    <xf:hint ref="$form-resources/creation-persName-forename/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td>
+                                <xf:input id="creation-persName-surname-control" bind="creation-persName-surname-bind">
+                                    <xf:label ref="$form-resources/creation-persName-surname/label"/>
+                                    <xf:hint ref="$form-resources/creation-persName-surname/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="event-type.origin-when-control" bind="event-type.origin-when-bind">
+                                    <xf:label ref="$form-resources/event-type.origin-when/label"/>
+                                    <xf:hint ref="$form-resources/event-type.origin-when/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td>
+                                <xf:input id="event-type.origin-note-type.abfassungsdatum-date-control" bind="event-type.origin-note-type.abfassungsdatum-date-bind">
+                                    <xf:label ref="$form-resources/event-type.origin-note-type.abfassungsdatum-date/label"/>
+                                    <xf:hint ref="$form-resources/event-type.origin-note-type.abfassungsdatum-date/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="event-type.julian-origin-when-control" bind="event-type.julian-origin-when-bind">
+                                    <xf:label ref="$form-resources/event-type.julian-origin-when/label"/>
+                                    <xf:hint ref="$form-resources/event-type.julian-origin-when/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td>
+                                <xf:input id="event-type.julian-origin-note-type.abfassungsdatum-date-control" bind="event-type.julian-origin-note-type.abfassungsdatum-date-bind">
+                                    <xf:label ref="$form-resources/event-type.julian-origin-note-type.abfassungsdatum-date/label"/>
+                                    <xf:hint ref="$form-resources/event-type.julian-origin-note-type.abfassungsdatum-date/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="placeName-type.Abfassungsort-control" bind="placeName-type.Abfassungsort-bind">
+                                    <xf:label ref="$form-resources/placeName-type.Abfassungsort/label"/>
+                                    <xf:hint ref="$form-resources/placeName-type.Abfassungsort/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="notesStmt_refs-control" bind="notesStmt_refs-bind">
+                    <xf:label ref="$form-resources/notesStmt_refs/label"/>
+                    <fr:grid id="grid-26-grid" bind="grid-26-bind" repeat="content" min="1" template="instance('grid-26-template')">
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="note-type.ref-control" bind="note-type.ref-bind">
+                                    <xf:label ref="$form-resources/note-type.ref/label"/>
+                                    <xf:hint ref="$form-resources/note-type.ref/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td>
+                                <xf:select1 id="ref-type-control" appearance="full" bind="ref-type-bind">
+                                    <xf:label ref="$form-resources/ref-type/label"/>
+                                    <xf:hint ref="$form-resources/ref-type/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                    <xf:itemset ref="$form-resources/ref-type/item">
+                                        <xf:label ref="label"/>
+                                        <xf:value ref="value"/>
+                                        <xf:hint ref="hint"/>
+                                    </xf:itemset>
+                                </xf:select1>
+                            </xh:td>
+                        </xh:tr>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="note-type.ref-rs-control" bind="note-type.ref-rs-bind">
+                                    <xf:label ref="$form-resources/note-type.ref-rs/label"/>
+                                    <xf:hint ref="$form-resources/note-type.ref-rs/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td/>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+            </fr:body>
+        </fr:view>
+    </xh:body>
+</xh:html>

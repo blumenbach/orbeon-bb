@@ -14,7 +14,15 @@
         <param-name>oxf.resources.factory</param-name>
         <param-value>org.orbeon.oxf.resources.PriorityResourceManagerFactory</param-value>
     </context-param>
-    <!-- Uncomment this for the filesystem resource manager (development mode) -->
+    <context-param>
+       <param-name>oxf.resources.priority.0</param-name>
+        <param-value>org.orbeon.oxf.resources.URLResourceManagerFactory</param-value>
+    </context-param>
+    <context-param>
+        <param-name>oxf.resources.priority.0.oxf.resources.url.base</param-name>
+        <param-value>http://localhost:8081/rest/db/apps/blumenbach</param-value>
+    </context-param> 
+        <!-- Uncomment this for the filesystem resource manager (development mode) -->
     <!--
     <context-param>
         <param-name>oxf.resources.priority.0</param-name>
