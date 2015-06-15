@@ -15,15 +15,23 @@
         <param-value>org.orbeon.oxf.resources.PriorityResourceManagerFactory</param-value>
     </context-param>
     <context-param>
+       <param-name>oxf.resources.priority.0</param-name>
+        <param-value>org.orbeon.oxf.resources.URLResourceManagerFactory</param-value>
+    </context-param>
+    <context-param>
+        <param-name>oxf.resources.priority.0.oxf.resources.url.base</param-name>
+        <param-value>http://localhost:8081/rest/db/apps/blumenbach</param-value>
+    </context-param> 
+        <!-- Uncomment this for the filesystem resource manager (development mode) -->
+    <!--
+    <context-param>
         <param-name>oxf.resources.priority.0</param-name>
         <param-value>org.orbeon.oxf.resources.FilesystemResourceManagerFactory</param-value>
     </context-param>
     <context-param>
         <param-name>oxf.resources.priority.0.oxf.resources.filesystem.sandbox-directory</param-name>
-        <param-value>/var/lib/tomcat7/webapps/orbeon/WEB-INF/resources/apps/blumenbach/resources</param-value>
+        <param-value>/home/teamcity/TeamCity/buildAgent/work/8a1a22d6ce60ec40/src/resources-local</param-value>
     </context-param>
-   <!-- Uncomment this for the filesystem resource manager (development mode) -->
-    <!--
     <context-param>
         <param-name>oxf.resources.priority.1</param-name>
         <param-value>org.orbeon.oxf.resources.FilesystemResourceManagerFactory</param-value>
@@ -394,9 +402,6 @@
             <url-pattern>/fr/login</url-pattern>
             <url-pattern>/fr/login-error</url-pattern>
         </web-resource-collection>
-        <auth-constraint>
-            <role-name>orbeon-user</role-name>
-        </auth-constraint>
     </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
@@ -405,13 +410,10 @@
             <form-error-page>/fr/login-error</form-error-page>
         </form-login-config>
     </login-config>
-    <login-config>
-        <auth-method>BASIC</auth-method>
-    </login-config>
     <security-role>
         <role-name>orbeon-user</role-name>
-    </security-role>
-    -->
+    </security-role>-->
+    <!-- End Form Runner authentication -->
     <session-config>
         <session-timeout>60</session-timeout>
     </session-config>

@@ -1,111 +1,65 @@
-<xh:html xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:xxi="http://orbeon.org/oxf/xml/xinclude" xmlns:saxon="http://saxon.sf.net/" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xf="http://www.w3.org/2002/xforms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sql="http://orbeon.org/oxf/xml/sql" xmlns:xh="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:exf="http://www.exforms.org/exf/1-0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fb="http://orbeon.org/oxf/xml/form-builder" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<xh:html xmlns:xxf="http://orbeon.org/oxf/xml/xforms" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xxi="http://orbeon.org/oxf/xml/xinclude" xmlns:saxon="http://saxon.sf.net/" xmlns:fr="http://orbeon.org/oxf/xml/form-runner" xmlns:xf="http://www.w3.org/2002/xforms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sql="http://orbeon.org/oxf/xml/sql" xmlns:xh="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:exf="http://www.exforms.org/exf/1-0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fb="http://orbeon.org/oxf/xml/form-builder" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
     <xh:head>
         <xh:title>New Taxon</xh:title>
         <xf:model id="fr-form-model" xxf:expose-xpath-types="true">
-            <xf:instance id="fr-service-response-instance" xxf:exclude-result-prefixes="#all">
-                <response/>
+            <xf:instance id="config" xxf:exclude-result-prefixes="#all">
+                <xi:include href="../../config.xml"/>
             </xf:instance>
-            <xf:send ev:event="xforms-model-construct-done" submission="load-data-submission"/>
-            <xf:submission id="load-data-submission" method="get" serialization="none" mediatype="application/xml" resource="http://localhost:8081/rest/db/apps/blumenbach/data/werke/jfb_werke_taxon_{xxf:get-request-parameter('id')}.xml" replace="instance" instance="fr-service-response-instance"/>
-            <xf:action id="populate-data-binding">
-                <xf:action ev:event="xforms-ready" ev:observer="fr-form-model" if="true()">
-                    <xf:send submission="load-data-submission"/>
-                </xf:action>
-               <!-- Populate resultOfMyRestWebservice control with pathToResults value
-                    following successful submission -->
-                <xf:action ev:event="xforms-submit-done" ev:observer="load-data-submission" context="instance('fr-service-response-instance')">
-                    <xf:action>
-                        <xf:var name="control-name" value="'classCode-scheme.taxon'" as="xs:string"/>
-                        <xf:var name="control-value" value="//tei:classCode[@scheme='taxon']" as="xs:string"/>
-                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
-                    </xf:action>
-                    <xf:action>
-                        <xf:var name="control-name" value="'classCode-biblNr.n'" as="xs:string"/>
-                        <xf:var name="control-value" value="//tei:classCode[@scheme='BiblNr']/@n" as="xs:string"/>
-                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
-                    </xf:action>
-                    <xf:action>
-                        <xf:var name="control-name" value="'title-n'" as="xs:string"/>
-                        <xf:var name="control-value" value="//tei:title/@n" as="xs:string"/>
-                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
-                    </xf:action>
-                    <xf:action>
-                        <xf:var name="control-name" value="'classCode-scheme.cat-idno'" as="xs:string"/>
-                        <xf:var name="control-value" value="//tei:classCode[@scheme='cat']/tei:idno" as="xs:string"/>
-                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
-                    </xf:action>
-                    <xf:action>
-                        <xf:var name="control-name" value="'classCode-scheme.cat-text'" as="xs:string"/>
-                        <xf:var name="control-value" value="//tei:classCode[@scheme='cat']/tei:rs" as="xs:string"/>
-                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
-                    </xf:action>
-                    <xf:action>
-                        <xf:var name="control-name" value="'Titel'" as="xs:string"/>
-                        <xf:var name="control-value" value="//tei:title" as="xs:string"/>
-                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
-                    </xf:action>
-                    <xf:action>
-                        <xf:var name="control-name" value="'TitleTypeJournal'" as="xs:string"/>
-                        <xf:var name="control-value" value="//tei:title/@level" as="xs:string"/>
-                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="if ($control-value = 'j') then true() else false()"/>
-                    </xf:action>                    
-                    <xf:action>
-                        <xf:var name="control-name" value="'pubPlace'" as="xs:string"/>
-                        <xf:var name="control-value" value="//tei:pubPlace" as="xs:string"/>
-                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
-                    </xf:action>
-                    <xf:action>
-                        <xf:var name="control-name" value="'name'" as="xs:string"/>
-                        <xf:var name="control-value" value="//tei:name" as="xs:string"/>
-                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
-                    </xf:action>
-                    <xf:action>
-                        <xf:var name="control-name" value="'date'" as="xs:string"/>
-                        <xf:var name="control-value" value="//tei:date" as="xs:string"/>
-                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
-                    </xf:action>
-                </xf:action>
-            </xf:action>
-                       
             <!-- Main instance -->
             <xf:instance id="fr-form-instance" xxf:exclude-result-prefixes="#all">
                 <form>
-                    <section-1>
+                    <profileDesc-textClass>
                         <classCode-scheme.taxon/>
                         <classCode-biblNr.n/>
                         <title-n/>
                         <classCode-scheme.cat-idno/>
                         <classCode-scheme.cat-text/>
-                    </section-1>
-                    <section-7>
-                        <Titel/>
-                        <TitleTypeJournal/>
-                    </section-7>
-                    <section-10>
+                    </profileDesc-textClass>
+                    <titleStmt>
+                        <title-type.taxon/>
+                    </titleStmt>
+                    <sourceDesc-monograph>
+                        <title-level.j/>
+                    </sourceDesc-monograph>
+                    <sourceDesc-imprint>
                         <pubPlace/>
                         <name/>
+                        <date-when/>
                         <date/>
-                    </section-10>
+                    </sourceDesc-imprint>
+                    <msDesc>
+                        <repository/>
+                        <repository-idno/>
+                        <repository-idno-n/>
+                    </msDesc>
                 </form>
             </xf:instance>
 
             <!-- Bindings -->
             <xf:bind id="fr-form-binds" ref="instance('fr-form-instance')">
-                <xf:bind id="section-1-bind" name="section-1" ref="section-1">
-                    <xf:bind id="classCode-scheme.taxon-bind" ref="classCode-scheme.taxon" name="classCode-scheme.taxon"/>
+                <xf:bind id="profileDesc-textClass-bind" name="profileDesc-textClass" ref="profileDesc-textClass">
+                    <xf:bind id="classCode-scheme.taxon-bind" ref="classCode-scheme.taxon" name="classCode-scheme.taxon" xxf:default="//new-id"/>
                     <xf:bind id="classCode-biblNr.n-bind" ref="classCode-biblNr.n" name="classCode-biblNr.n"/>
                     <xf:bind id="title-n-bind" ref="title-n" name="title-n"/>
                     <xf:bind id="classCode-scheme.cat-idno-bind" ref="classCode-scheme.cat-idno" name="classCode-scheme.cat-idno"/>
                     <xf:bind id="classCode-scheme.cat-text-bind" ref="classCode-scheme.cat-text" name="classCode-scheme.cat-text"/>
                 </xf:bind>
-                <xf:bind id="section-7-bind" ref="section-7" name="section-7">
-                    <xf:bind id="Titel-bind" ref="Titel" name="Titel"/>
-                    <xf:bind id="TitleTypeJournal-bind" ref="TitleTypeJournal" name="TitleTypeJournal" type="xf:boolean"/>
+                <xf:bind id="titleStmt-bind" ref="titleStmt" name="titleStmt">
+                    <xf:bind id="title-type.taxon-bind" ref="title-type.taxon" name="title-type.taxon"/>
                 </xf:bind>
-                <xf:bind id="section-10-bind" ref="section-10" name="section-10">
-                    <xf:bind id="pubPlace-bind" ref="pubPlace" name="pubPlace" xxf:default="instance('tei')//tei:pubPlace"/>
+                <xf:bind id="sourceDesc-imprint-bind" ref="sourceDesc-imprint" name="sourceDesc-imprint">
+                    <xf:bind id="pubPlace-bind" ref="pubPlace" name="pubPlace"/>
                     <xf:bind id="name-bind" ref="name" name="name"/>
+                    <xf:bind id="date-when-bind" ref="date-when" name="date-when" type="xf:date"/>
                     <xf:bind id="date-bind" ref="date" name="date"/>
+                </xf:bind>
+                <xf:bind id="msDesc-bind" ref="msDesc" name="msDesc">
+                    <xf:bind id="repository-bind" ref="repository" name="repository"/>
+                    <xf:bind id="repository-idno-bind" ref="repository-idno" name="repository-idno"/>
+                    <xf:bind id="repository-idno-n-bind" ref="repository-idno-n" name="repository-idno-n"/>
+                </xf:bind>
+                <xf:bind id="sourceDesc-monograph-bind" ref="sourceDesc-monograph" name="sourceDesc-monograph">
+                    <xf:bind id="title-level.j-bind" ref="title-level.j" name="title-level.j"/>
                 </xf:bind>
             </xf:bind>
 
@@ -133,6 +87,22 @@
             <xf:instance id="fr-form-resources" xxf:readonly="false" xxf:exclude-result-prefixes="#all">
                 <resources>
                     <resource xml:lang="en">
+                        <title-level.j>
+                            <label>Title </label>
+                            <hint>If Taxon is a monograph, put Title here</hint>
+                        </title-level.j>
+                        <repository>
+                            <label>Repository</label>
+                            <hint/>
+                        </repository>
+                        <repository-idno>
+                            <label>ID # (label)</label>
+                            <hint/>
+                        </repository-idno>
+                        <repository-idno-n>
+                            <label>ID # (data)</label>
+                            <hint/>
+                        </repository-idno-n>
                         <pubPlace>
                             <label>PublicationPlace</label>
                             <hint/>
@@ -141,18 +111,22 @@
                             <label>Publisher</label>
                             <hint/>
                         </name>
-                        <date>
+                        <date-when>
                             <label>Publication Date</label>
                             <hint/>
+                        </date-when>
+                        <date>
+                            <label>Publication Date Label</label>
+                            <hint/>
                         </date>
-                        <Titel>
-                            <label>Titel</label>
+                        <msDesc>
+                            <label>MsDescription</label>
+                            <help/>
+                        </msDesc>
+                        <title-type.taxon>
+                            <label>Title (taxon)</label>
                             <hint/>
-                        </Titel>
-                        <TitleTypeJournal>
-                            <label>Is Journal?</label>
-                            <hint/>
-                        </TitleTypeJournal>
+                        </title-type.taxon>
                         <classCode-scheme.taxon>
                             <label>classCode</label>
                             <hint/>
@@ -173,17 +147,21 @@
                             <label>Category Label</label>
                             <hint/>
                         </classCode-scheme.cat-text>
-                        <section-1>
+                        <profileDesc-textClass>
                             <label>Identification</label>
-                        </section-1>
-                        <section-7>
-                            <label>Data</label>
+                        </profileDesc-textClass>
+                        <titleStmt>
+                            <label>TitleStatement</label>
                             <help/>
-                        </section-7>
-                        <section-10>
+                        </titleStmt>
+                        <sourceDesc-monograph>
+                            <label>SourceDescription</label>
+                            <help/>
+                        </sourceDesc-monograph>
+                        <sourceDesc-imprint>
                             <label>Imprint</label>
                             <help/>
-                        </section-10>
+                        </sourceDesc-imprint>
                     </resource>
                 </resources>
             </xf:instance>
@@ -192,13 +170,95 @@
             <xf:instance id="fr-service-request-instance" xxf:exclude-result-prefixes="#all">
                 <request/>
             </xf:instance>
+            <xf:instance id="fr-service-response-instance" xxf:exclude-result-prefixes="#all">
+                <response/>
+            </xf:instance>
+ <xf:send ev:event="xforms-model-construct-done" submission="load-data-submission"/>
+            <xf:submission id="load-data-submission" method="get" serialization="none" mediatype="application/xml" resource="{instance('config')/exist/url}/werke/jfb_werke_taxon_{xxf:get-request-parameter('id')}.xml" replace="instance" instance="fr-service-response-instance"/>
+            <xf:action id="populate-data-binding">
+                <xf:action ev:event="xforms-ready" ev:observer="fr-form-model" if="true()">
+                    <xf:send submission="load-data-submission"/>
+                </xf:action>
+                <xf:action ev:event="xforms-submit-done" ev:observer="load-data-submission" context="instance('fr-service-response-instance')">
+                    <xf:action>
+                        <xf:var name="control-name" value="'classCode-scheme.taxon'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:classCode[@scheme='taxon']" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'classCode-biblNr.n'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:classCode[@scheme='BiblNr']/@n" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'title-n'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:title/@n" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'classCode-scheme.cat-idno'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:classCode[@scheme='cat']/tei:idno" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'classCode-scheme.cat-text'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:classCode[@scheme='cat']/tei:rs" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'title-type.taxon'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:title[@type='taxon']" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'title-level.j'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:title[@level='j']" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'pubPlace'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:pubPlace" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'name'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:name" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'date'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:date" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'date-when'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:date/@when" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>                    
+                    <xf:action>
+                        <xf:var name="control-name" value="'repository'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:repository" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'repository-idno'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:msIdentifier/tei:idno" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>
+                    <xf:action>
+                        <xf:var name="control-name" value="'repository-idno-n'" as="xs:string"/>
+                        <xf:var name="control-value" value="//tei:msIdentifier/tei:idno/@n" as="xs:string"/>
+                        <xf:setvalue ref="instance('fr-form-instance')/*/*[name() = $control-name]" value="$control-value"/>
+                    </xf:action>                    
+                </xf:action>
+            </xf:action>            
         </xf:model>
     </xh:head>
     <xh:body>
         <fr:view>
             <fr:body xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:p="http://www.orbeon.com/oxf/pipeline" xmlns:oxf="http://www.orbeon.com/oxf/processors">
-                <fr:section id="section-1-control" bind="section-1-bind">
-                    <xf:label ref="$form-resources/section-1/label"/>
+                <fr:section id="profileDesc-textClass-control" bind="profileDesc-textClass-bind">
+                    <xf:label ref="$form-resources/profileDesc-textClass/label"/>
                     <fr:grid>
                         <xh:tr>
                             <xh:td>
@@ -236,7 +296,7 @@
                     <fr:grid>
                         <xh:tr>
                             <xh:td>
-                                <xf:input id="classCode-scheme.cat-text-control" bind="classCode-scheme.cat-text-bind">
+                                <xf:input id="classCode-scheme.cat-text-control" bind="classCode-scheme.cat-text-bind" class="fr-summary fr-search">
                                     <xf:label ref="$form-resources/classCode-scheme.cat-text/label"/>
                                     <xf:hint ref="$form-resources/classCode-scheme.cat-text/hint"/>
                                     <xf:alert ref="$fr-resources/detail/labels/alert"/>
@@ -245,31 +305,36 @@
                         </xh:tr>
                     </fr:grid>
                 </fr:section>
-                <fr:section id="section-7-control" bind="section-7-bind">
-                    <xf:label ref="$form-resources/section-7/label"/>
+                <fr:section id="titleStmt-control" bind="titleStmt-bind">
+                    <xf:label ref="$form-resources/titleStmt/label"/>
                     <fr:grid>
                         <xh:tr>
                             <xh:td>
-                                <xf:input id="Titel-control" bind="Titel-bind">
-                                    <xf:label ref="$form-resources/Titel/label"/>
-                                    <xf:hint ref="$form-resources/Titel/hint"/>
-                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
-                                </xf:input>
-                            </xh:td>
-                        </xh:tr>
-                        <xh:tr>
-                            <xh:td>
-                                <xf:input id="TitleTypeJournal-control" bind="TitleTypeJournal-bind">
-                                    <xf:label ref="$form-resources/TitleTypeJournal/label"/>
-                                    <xf:hint ref="$form-resources/TitleTypeJournal/hint"/>
+                                <xf:input id="title-type.taxon-control" bind="title-type.taxon-bind">
+                                    <xf:label ref="$form-resources/title-type.taxon/label"/>
+                                    <xf:hint ref="$form-resources/title-type.taxon/hint"/>
                                     <xf:alert ref="$fr-resources/detail/labels/alert"/>
                                 </xf:input>
                             </xh:td>
                         </xh:tr>
                     </fr:grid>
                 </fr:section>
-                <fr:section id="section-10-control" bind="section-10-bind">
-                    <xf:label ref="$form-resources/section-10/label"/>
+                <fr:section id="sourceDesc-monograph-control" bind="sourceDesc-monograph-bind">
+                    <xf:label ref="$form-resources/sourceDesc-monograph/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="title-level.j-control" bind="title-level.j-bind">
+                                    <xf:label ref="$form-resources/title-level.j/label"/>
+                                    <xf:hint ref="$form-resources/title-level.j/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="sourceDesc-imprint-control" bind="sourceDesc-imprint-bind">
+                    <xf:label ref="$form-resources/sourceDesc-imprint/label"/>
                     <fr:grid>
                         <xh:tr>
                             <xh:td>
@@ -289,11 +354,52 @@
                                 </xf:input>
                             </xh:td>
                         </xh:tr>
+                    </fr:grid>
+                    <fr:grid>
                         <xh:tr>
+                            <xh:td>
+                                <fr:fields-date xmlns="http://orbeon.org/oxf/xml/form-builder" xmlns:xxbl="http://orbeon.org/oxf/xml/xbl" id="date-when-control" bind="date-when-bind">
+                                    <xf:label ref="$form-resources/date-when/label"/>
+                                    <xf:hint ref="$form-resources/date-when/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </fr:fields-date>
+                            </xh:td>
                             <xh:td>
                                 <xf:input id="date-control" bind="date-bind">
                                     <xf:label ref="$form-resources/date/label"/>
                                     <xf:hint ref="$form-resources/date/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                </fr:section>
+                <fr:section id="msDesc-control" bind="msDesc-bind">
+                    <xf:label ref="$form-resources/msDesc/label"/>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="repository-control" bind="repository-bind">
+                                    <xf:label ref="$form-resources/repository/label"/>
+                                    <xf:hint ref="$form-resources/repository/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                        </xh:tr>
+                    </fr:grid>
+                    <fr:grid>
+                        <xh:tr>
+                            <xh:td>
+                                <xf:input id="repository-idno-control" bind="repository-idno-bind">
+                                    <xf:label ref="$form-resources/repository-idno/label"/>
+                                    <xf:hint ref="$form-resources/repository-idno/hint"/>
+                                    <xf:alert ref="$fr-resources/detail/labels/alert"/>
+                                </xf:input>
+                            </xh:td>
+                            <xh:td>
+                                <xf:input id="repository-idno-n-control" bind="repository-idno-n-bind">
+                                    <xf:label ref="$form-resources/repository-idno-n/label"/>
+                                    <xf:hint ref="$form-resources/repository-idno-n/hint"/>
                                     <xf:alert ref="$fr-resources/detail/labels/alert"/>
                                 </xf:input>
                             </xh:td>
