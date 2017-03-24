@@ -1,7 +1,7 @@
 <config>
     <tmp_path>/tmp</tmp_path>
     <exist>
-        <url>http://localhost:8081/rest/db/apps/blumenbach/data</url>
+        <url>http://localhost:8900/rest/db/apps/blumenbach/data</url>
         <username/>
         <password/>
     </exist>

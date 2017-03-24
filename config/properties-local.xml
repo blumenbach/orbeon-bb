@@ -11,7 +11,7 @@
 <property
     as="xs:anyURI"
  name="oxf.fr.persistence.exist.exist-uri"
- value="http://orbeon:orbeon@localhost:8081/rest/db/orbeon/fr"/>
+ value="http://orbeon:orbeon@exist:8080/exist/rest/db/orbeon/fr"/>
 
 <property
     as="xs:boolean"
@@ -21,7 +21,7 @@
 <property
     as="xs:string"
     name="oxf.fr.detail.new.service.uri.*.*"
-    value="/apps/blumenbach/tei"/>
+    value="/exist/apps/blumenbach/tei"/>
 
 <property
     as="xs:string"
@@ -31,12 +31,12 @@
 <property
     as="xs:anyURI"
     name="oxf.fr.default-logo.uri.*.*"
-    value="/apps/blumenbach/resources/images/blumenbach.png"/>
+    value="http://localhost:8900/exist/apps/blumenbach/resources/images/blumenbach.png"/>
 
 <property
     as="xs:string"
     name="oxf.fr.css.custom.uri.*.*"
-    value="/apps/blumenbach/resources/css/style.css"/>
+    value="/exist/apps/blumenbach/resources/css/style.css"/>
 
 <property 
     as="xs:string" 
@@ -51,7 +51,7 @@
 <property 
     as="xs:string"  
     name="oxf.fr.detail.process.exit.*.*"
-    value='navigate("http://localhost:8081/apps/blumenbach/index.html")'/>
+    value='navigate("http://localhost:8900/exist/apps/blumenbach/index.html")'/>
 
 <property
   as="xs:string"
