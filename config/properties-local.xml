@@ -80,4 +80,9 @@
   name="authorizer"
   value="/orbeon-auth"/>
 
+<property
+  as="xs:integer"
+  name="oxf.fr.summary.page-size.*.*"
+  value="50"/>
+
 </properties>
