@@ -21,7 +21,7 @@
 <property
     as="xs:string"
     name="oxf.fr.detail.new.service.uri.*.*"
-    value="/exist/apps/blumenbach/tei"/>
+    value="http://localhost:8080/exist/apps/blumenbach/tei"/>
 
 <property
     as="xs:string"
@@ -31,7 +31,7 @@
 <property
     as="xs:anyURI"
     name="oxf.fr.default-logo.uri.*.*"
-    value="http://localhost:8900/exist/apps/blumenbach/resources/images/blumenbach.png"/>
+    value="http://localhost:8080/exist/apps/blumenbach/resources/images/blumenbach.png"/>
 
 <property
     as="xs:string"
@@ -48,6 +48,9 @@
     name="oxf.fr.summary.buttons.*.*"
     value="home review pdf delete duplicate new exit"/>
 
+<property as="xs:string"  name="oxf.fr.detail.buttons.view.*.*"
+    value="edit pdf summary exit"/>
+
 <property 
     as="xs:string"  
     name="oxf.fr.detail.process.exit.*.*"
@@ -56,7 +59,7 @@
 <property
   as="xs:string"
   name="oxf.fr.resource.*.*.en.buttons.exit"
-  value="TEI DB"/>
+  value="Blumenbach DB"/>
 
 <property
     as="xs:string"
@@ -83,6 +86,6 @@
 <property
   as="xs:integer"
   name="oxf.fr.summary.page-size.*.*"
-  value="50"/>
+  value="40"/>
 
 </properties>
